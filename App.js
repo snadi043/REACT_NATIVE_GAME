@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { StatusBar } from "react-native-web";
+import HomeScreenGameComponent from "./screens/HomeScreenGameComponent";
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
     >
       <Text>Hello World!!!</Text>
       <StatusBar style="auto"/>
+      <HomeScreenGameComponent/>
     </View>
   );
 }
