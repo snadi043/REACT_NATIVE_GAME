@@ -3,6 +3,7 @@
     "name": "blank",
     "slug": "blank",
     "version": "1.0.0",
+    "newArchEnabled": true,
     "platforms": [
       "ios",
       "android",
