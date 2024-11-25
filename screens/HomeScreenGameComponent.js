@@ -1,4 +1,4 @@
-import { TextInput, View } from "react-native-web";
+import { TextInput, View } from "react-native";
 import CustomizedButton from "../components/CustomizedButton";
 
 function HomeScreenGameComponent(){

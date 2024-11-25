@@ -1,4 +1,4 @@
-import { View } from "react-native-web";
+import { View } from "react-native";
 
 function EndGameComponent(){
     return <View>

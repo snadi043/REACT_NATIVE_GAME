@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import { StatusBar } from "react-native-web";
+import { StatusBar } from "react-native";
 import HomeScreenGameComponent from "./screens/HomeScreenGameComponent";
 
 export default function App() {
