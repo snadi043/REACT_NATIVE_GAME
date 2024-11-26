@@ -10,14 +10,22 @@ function HomescreenGameComponent(){
                 keyboardType="number-pad"
                 multiline={false}
                 />
-                <CustomizedButton>Reset</CustomizedButton>
-                <CustomizedButton>Confirm</CustomizedButton>
+                <View style={styles.buttonsContainer}>
+                    <View style={styles.buttonContainer}>
+                        <CustomizedButton>Reset</CustomizedButton>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <CustomizedButton>Confirm</CustomizedButton>
+                    </View>
+                </View>
             </View>
 }
 export default HomescreenGameComponent;
 
 const styles = StyleSheet.create({
     inputContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 100,
         padding: 16,
         marginHorizontal: 24,
@@ -39,7 +47,11 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         fontWeight: 'bold',
         fontSize: 28,
-
-
-    }
+    },
+    buttonsContainer:{
+        flexDirection: 'row',
+    },
+   buttonContainer:{
+        flex: 1,
+   }
 })
