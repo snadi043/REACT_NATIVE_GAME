@@ -6,12 +6,12 @@ function CustomizedButton({children}){
         console.log('pressed');
     }
 
-    return <View style={styles.buttonInnerContainer}>
+    return <View style={styles.buttonOuterContainer}>
             <Pressable 
-                style={(pressed) => [pressed ? styles.pressed : styles.buttonInnerContainer] && styles.buttonInnerContainer} 
+                style={({pressed}) => pressed ? [styles.pressed, styles.buttonInnerContainer] : styles.buttonInnerContainer} 
                 android_ripple={color="#640233"}
                 onPress={buttonPressHandler}>
-                <Text styles={buttonText}>{children}</Text>
+                <Text style={styles.buttonText}>{children}</Text>
             </Pressable>
         </View>
     
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingVertical: 8,
         elevation: 2,
-        backgroundColor: "#72063C"
+        backgroundColor: "#72063C",
 
     },
     buttonOuterContainer: {
