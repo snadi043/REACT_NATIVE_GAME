@@ -5,7 +5,7 @@ import HomescreenGameComponent from "./screens/HomescreenGameComponent";
 export default function App() {
   return (
     <View
-      style={styles.container}
+      style={styles.rootContainer}
     >
       <StatusBar style="auto"/>
       <HomescreenGameComponent/>
@@ -14,5 +14,8 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {}
+  rootContainer: {
+    backgroundColor: '#DDB521',
+    flex: 1,
+  }
 });
