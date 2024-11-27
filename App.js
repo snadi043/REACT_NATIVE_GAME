@@ -1,5 +1,4 @@
-import { StyleSheet } from "react-native";
-import { StatusBar } from "react-native";
+import { StyleSheet, StatusBar, ImageBackground  } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import HomescreenGameComponent from "./screens/HomescreenGameComponent";
 
@@ -9,8 +8,15 @@ export default function App() {
       style={styles.rootContainer}
       colors={['#52063C', '#DDB521']}
     >
+    {/* <ImageBackground 
+    source={require('./assets/images/background.png')}
+    style={styles.rootContainer}
+    imageStyle={styles.backgroundImage}
+    resizeMode="cover"
+    > */}
       <StatusBar style="auto"/>
       <HomescreenGameComponent/>
+    {/* </ImageBackground> */}
     </LinearGradient>
   );
 }
@@ -18,5 +24,8 @@ export default function App() {
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
+  },
+  backgroundImage:{
+    opacity: 0.15,
   }
 });
