@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TextInput, View, StyleSheet, Alert } from "react-native";
 import CustomizedButton from "../components/CustomizedButton";
 
-function HomescreenGameComponent(){
+function HomescreenGameComponent({onConfirmNumber}){
     const [numberInput, setNumberInput] = useState('');
 
     function textInputHandler(enteredText){
@@ -16,14 +16,12 @@ function HomescreenGameComponent(){
     function numberConfirmHandler(){
         const enteredNumber = parseInt(numberInput);
 
-        if( isNaN(enteredNumber) || enteredNumber <= 0 || enteredNumber > 99){
+        if(isNaN(enteredNumber) || enteredNumber <= 0 || enteredNumber > 99){
             Alert.alert('Invalid Input Alert', 'Entered value must be a number and should be within 0 & 99', [{text: 'okay', onPress: {numberResetHandler}}]);
+            return;
         }
-
-        console.log('valid input number');
+        onConfirmNumber(enteredNumber);
         setNumberInput('');
-
-
     }
 
     return <View style={styles.inputContainer}>

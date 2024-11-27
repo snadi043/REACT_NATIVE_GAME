@@ -1,8 +1,22 @@
 import { StyleSheet, StatusBar, ImageBackground  } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import HomescreenGameComponent from "./screens/HomescreenGameComponent";
+import StartGameComponent from "./screens/StartGameComponent";
+import { useState } from "react";
 
 export default function App() {
+  const [userChosenNumber, setUserChosenNumber] = useState();
+
+  function confirmNumberHandler(userEnteredNumber){
+    setUserChosenNumber(userEnteredNumber);
+  }
+
+  let screen = <HomescreenGameComponent onConfirmNumber={confirmNumberHandler}/>
+
+  if(userChosenNumber){
+    screen = <StartGameComponent/>
+  }
+
   return (
     <LinearGradient
       style={styles.rootContainer}
@@ -18,7 +32,7 @@ export default function App() {
     > */}
 
       <StatusBar style="auto"/>
-      <HomescreenGameComponent/>
+      {screen}
 
     {/* Uncomment this line which is closing tag of ImageBackground */}
     
