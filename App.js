@@ -1,21 +1,22 @@
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { StatusBar } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import HomescreenGameComponent from "./screens/HomescreenGameComponent";
 
 export default function App() {
   return (
-    <View
+    <LinearGradient
       style={styles.rootContainer}
+      colors={['#52063C', '#DDB521']}
     >
       <StatusBar style="auto"/>
       <HomescreenGameComponent/>
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   rootContainer: {
-    backgroundColor: '#DDB521',
     flex: 1,
   }
 });
