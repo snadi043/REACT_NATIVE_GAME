@@ -1,7 +1,23 @@
+import { useState } from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 import CustomizedButton from "../components/CustomizedButton";
 
 function HomescreenGameComponent(){
+    const [numberInput, setNumberInput] = useState('');
+
+    function textInputHandler(enteredText){
+        setNumberInput(enteredText);
+    }
+
+    function numberResetHandler(){
+        setNumberInput('');
+    }
+
+    function numberConfirmHandler(){
+        
+
+    }
+
     return <View style={styles.inputContainer}>
             <TextInput 
                 style={styles.textInput}
@@ -9,13 +25,15 @@ function HomescreenGameComponent(){
                 cursorColor={720639} 
                 keyboardType="number-pad"
                 multiline={false}
+                onChangeText={textInputHandler}
+                value={numberInput}
                 />
                 <View style={styles.buttonsContainer}>
                     <View style={styles.buttonContainer}>
-                        <CustomizedButton>Reset</CustomizedButton>
+                        <CustomizedButton onCustomizedButtonPressProp={numberResetHandler}>Reset</CustomizedButton>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <CustomizedButton>Confirm</CustomizedButton>
+                        <CustomizedButton onCustomizedButtonPressProp={numberConfirmHandler}>Confirm</CustomizedButton>
                     </View>
                 </View>
             </View>
