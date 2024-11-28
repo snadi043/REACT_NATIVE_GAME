@@ -4,6 +4,9 @@ import HomescreenGameComponent from "./screens/HomescreenGameComponent";
 import StartGameComponent from "./screens/StartGameComponent";
 import { useState } from "react";
 
+import Colors from "./constants/colors";
+
+
 export default function App() {
   const [userChosenNumber, setUserChosenNumber] = useState();
 
@@ -20,7 +23,7 @@ export default function App() {
   return (
     <LinearGradient
       style={styles.rootContainer}
-      colors={['#52063C', '#DDB521']}
+      colors={[Colors.primary500, Colors.accent500]}
     >
     {/* Uncomment the lines from 13 - 18 to see the backgroundImage in the app screen only in iOS devices.  */}
     

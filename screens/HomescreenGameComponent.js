@@ -2,6 +2,8 @@ import { useState } from "react";
 import { TextInput, View, StyleSheet, Alert } from "react-native";
 import CustomizedButton from "../components/CustomizedButton";
 
+import Colors from "../constants/colors";
+
 function HomescreenGameComponent({onConfirmNumber}){
     const [numberInput, setNumberInput] = useState('');
 
@@ -28,7 +30,7 @@ function HomescreenGameComponent({onConfirmNumber}){
             <TextInput 
                 style={styles.textInput}
                 maxLength={3} 
-                cursorColor={720639} 
+                cursorColor={Colors.primary700} 
                 keyboardType="number-pad"
                 multiline={false}
                 onChangeText={textInputHandler}
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
         marginTop: 100,
         padding: 16,
         marginHorizontal: 24,
-        backgroundColor: '#3B021F',
+        backgroundColor: Colors.primary400,
         elevation: 4,
         shadowColor: 'black',
         shadowOpacity: 0.25,
@@ -64,8 +66,8 @@ const styles = StyleSheet.create({
     textInput:{
         height: 60,
         width: 50,
-        color: '#DDB521',
-        borderBottomColor: "#DDB521",
+        color: Colors.accent500,
+        borderBottomColor: Colors.accent500,
         borderBottomWidth: 2,
         textAlign: 'center',
         marginVertical: 8,

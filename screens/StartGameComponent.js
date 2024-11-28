@@ -1,13 +1,15 @@
 import { View, Text, StyleSheet } from "react-native";
+import Title from "../components/Title";
 
 function StartGameComponent(){
     return <View style={styles.startGameRoot}>
-    <Text>Opponent's Guess</Text>
+    <Title>Opponent's Guess</Title>
     <View>
+        <Text>Higher or Lower ?</Text>
         {/* <Text>+ - </Text> */}
     </View>
     <View>
-        <Text>Higher or Lower ?</Text>
+        {/* <Text>LOG ROUNDS</Text> */}
     </View>
     </View>
     
