@@ -1,4 +1,4 @@
-import { StyleSheet, StatusBar, ImageBackground  } from "react-native";
+import { StyleSheet, StatusBar, ImageBackground, SafeAreaView  } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import HomescreenGameComponent from "./screens/HomescreenGameComponent";
 import StartGameComponent from "./screens/StartGameComponent";
@@ -32,7 +32,9 @@ export default function App() {
     > */}
 
       <StatusBar style="auto"/>
-      {screen}
+      <SafeAreaView style={styles.rootContainer}>
+        {screen}
+      </SafeAreaView>
 
     {/* Uncomment this line which is closing tag of ImageBackground */}
     
