@@ -1,23 +1,32 @@
+import { useState } from "react";
 import { StyleSheet, StatusBar, ImageBackground, SafeAreaView  } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import HomescreenGameComponent from "./screens/HomescreenGameComponent";
 import StartGameComponent from "./screens/StartGameComponent";
-import { useState } from "react";
-
+import EndGameComponent from "./screens/EndGameComponent";
 import Colors from "./constants/colors";
-
 
 export default function App() {
   const [userChosenNumber, setUserChosenNumber] = useState();
+  const [isGameOver, setIsGameOver] = useState(true);
 
   function confirmNumberHandler(userEnteredNumber){
     setUserChosenNumber(userEnteredNumber);
+    setIsGameOver(false);
   }
 
-  let screen = <HomescreenGameComponent onConfirmNumber={confirmNumberHandler}/>
+  function gameOverHandler(){
+    setIsGameOver(true);
+  }
+
+  let screen =  (<HomescreenGameComponent onConfirmNumber={confirmNumberHandler}/> );
 
   if(userChosenNumber){
-    screen = <StartGameComponent userNumber={userChosenNumber}/>
+    screen = ( <StartGameComponent userNumber={userChosenNumber} onGameOver={gameOverHandler}/> );
+  }
+
+  if(userChosenNumber && isGameOver){
+    screen = <EndGameComponent/>
   }
 
   return (

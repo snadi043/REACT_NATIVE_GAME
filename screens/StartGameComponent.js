@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Alert } from "react-native";
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Title from "../components/ui/Title";
 import GuessNumberOutput from "../components/game/GuessNumberOutput";
 import CustomizedButton from "../components/ui/CustomizedButton";
@@ -19,9 +19,22 @@ function generateRandomBetween(min, max, exclude) {
   let maxBoundary = 100;
 
 
-function StartGameComponent({userNumber}){
-    const userInitialGuessNumber = generateRandomBetween(minBoundary, maxBoundary, userNumber)
+function StartGameComponent({userNumber, onGameOver}){
+    // Making the min and max values 1 & 100 respectively because 
+    // whenever the currentGuess value changes the StartGameComponent executes 
+    // and reads the min and max values again even though both are the same at some point. 
+    // So. to avoid this issue we are manually making the values to 1 and 100. // 
+    
+    const userInitialGuessNumber = generateRandomBetween(1, 100, userNumber)
       const [currentGuess, setCurrentGuess] = useState(userInitialGuessNumber);
+
+      // Making the useEffect to run before the variables, min and max boundaries are set to avoid the errors.//
+
+      useEffect(() => {
+        if(currentGuess === userNumber ){
+            onGameOver();
+        }
+      }, [userNumber, currentGuess, onGameOver]);
 
       function nextGuessNumberHandler(direction){
         if((direction == 'lower' && currentGuess < userNumber) || (direction == 'greater' && currentGuess > userNumber)){
