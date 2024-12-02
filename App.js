@@ -17,7 +17,7 @@ export default function App() {
   let screen = <HomescreenGameComponent onConfirmNumber={confirmNumberHandler}/>
 
   if(userChosenNumber){
-    screen = <StartGameComponent/>
+    screen = <StartGameComponent userNumber={userChosenNumber}/>
   }
 
   return (
