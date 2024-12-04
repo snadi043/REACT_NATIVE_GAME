@@ -58,13 +58,16 @@ function StartGameComponent({userNumber, onGameOver}){
     <Title>Opponent's Guess</Title>
        <GuessNumberOutput>{currentGuess}</GuessNumberOutput>
     <Card>
-        <InstructionText>Higher or Lower ?</InstructionText>
-        <View>
+        <InstructionText style={styles.instructionStyles}>Higher or Lower ?</InstructionText>
+        <View style={styles.buttonsContainer}>
 
         {/* pre-configuring both the buttons to expect the 'direction' prop on them and execute as per the requirement using "this" and "bind" keywords. */}
-            
-            <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'lower')}> - </CustomizedButton>
-            <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'greater')}> + </CustomizedButton>
+            <View style={styles.buttonContainer}>
+                <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'lower')}> - </CustomizedButton>
+            </View>
+            <View style={styles.buttonContainer}>
+                <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'greater')}> + </CustomizedButton>
+            </View>
         </View>
     </Card>
     <View>
@@ -79,5 +82,14 @@ const styles = StyleSheet.create({
     startGameRoot: {
         flex: 1,
         margin: 24,
-    }
+    },
+    instructionStyles:{
+        marginBottom: 24,
+    },
+    buttonsContainer:{
+        flexDirection: 'row',
+    },
+   buttonContainer:{
+        flex: 1,
+   }
 })
