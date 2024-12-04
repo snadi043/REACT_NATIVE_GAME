@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { TextInput, View, StyleSheet, Alert } from "react-native";
 import CustomizedButton from "../components/ui/CustomizedButton";
-
+import Card from "../components/ui/Card";
+import Title from "../components/ui/Title";
+import InstructionText from "../components/ui/InstructionText";
 import Colors from "../constants/colors";
 
 function HomescreenGameComponent({onConfirmNumber}){
@@ -26,42 +28,39 @@ function HomescreenGameComponent({onConfirmNumber}){
         setNumberInput('');
     }
 
-    return <View style={styles.inputContainer}>
-            <TextInput 
-                style={styles.textInput}
-                maxLength={3} 
-                cursorColor={Colors.primary700} 
-                keyboardType="number-pad"
-                multiline={false}
-                onChangeText={textInputHandler}
-                value={numberInput}
-                />
-                <View style={styles.buttonsContainer}>
-                    <View style={styles.buttonContainer}>
-                        <CustomizedButton onCustomizedButtonPressProp={numberResetHandler}>Reset</CustomizedButton>
+    return <View style={styles.titleContainer}>
+            <Title>Guess My Number</Title>
+                <Card>
+                    <InstructionText>Enter a Number</InstructionText>
+                    <TextInput 
+                    style={styles.textInput}
+                    maxLength={3} 
+                    cursorColor={Colors.primary700} 
+                    keyboardType="number-pad"
+                    multiline={false}
+                    onChangeText={textInputHandler}
+                    value={numberInput}
+                    />
+                    <View style={styles.buttonsContainer}>
+                        <View style={styles.buttonContainer}>
+                            <CustomizedButton onCustomizedButtonPressProp={numberResetHandler}>Reset</CustomizedButton>
+                        </View>
+                        <View style={styles.buttonContainer}>
+                            <CustomizedButton onCustomizedButtonPressProp={numberConfirmHandler}>Confirm</CustomizedButton>
+                        </View>
                     </View>
-                    <View style={styles.buttonContainer}>
-                        <CustomizedButton onCustomizedButtonPressProp={numberConfirmHandler}>Confirm</CustomizedButton>
-                    </View>
-                </View>
+                </Card>
             </View>
+
 }
 export default HomescreenGameComponent;
 
 const styles = StyleSheet.create({
-    inputContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
+    titleContainer:{
+        color: 'white',
         marginTop: 100,
-        padding: 16,
-        marginHorizontal: 24,
-        backgroundColor: Colors.primary400,
-        elevation: 4,
-        shadowColor: 'black',
-        shadowOpacity: 0.25,
-        shadowOffset: {height: 2, width: 0},
-        shadowRadius: 6,
-        borderRadius: 8,
+        flex: 1,
+        alignItems: 'center',
     },
     textInput:{
         height: 60,

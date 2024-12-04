@@ -1,8 +1,10 @@
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import {useEffect, useState} from 'react';
 import Title from "../components/ui/Title";
 import GuessNumberOutput from "../components/game/GuessNumberOutput";
 import CustomizedButton from "../components/ui/CustomizedButton";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
 
 function generateRandomBetween(min, max, exclude) {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -24,7 +26,7 @@ function StartGameComponent({userNumber, onGameOver}){
     // whenever the currentGuess value changes the StartGameComponent executes 
     // and reads the min and max values again even though both are the same at some point. 
     // So. to avoid this issue we are manually making the values to 1 and 100. // 
-    
+
     const userInitialGuessNumber = generateRandomBetween(1, 100, userNumber)
       const [currentGuess, setCurrentGuess] = useState(userInitialGuessNumber);
 
@@ -55,8 +57,8 @@ function StartGameComponent({userNumber, onGameOver}){
     return <View style={styles.startGameRoot}>
     <Title>Opponent's Guess</Title>
        <GuessNumberOutput>{currentGuess}</GuessNumberOutput>
-    <View>
-        <Text>Higher or Lower ?</Text>
+    <Card>
+        <InstructionText>Higher or Lower ?</InstructionText>
         <View>
 
         {/* pre-configuring both the buttons to expect the 'direction' prop on them and execute as per the requirement using "this" and "bind" keywords. */}
@@ -64,7 +66,7 @@ function StartGameComponent({userNumber, onGameOver}){
             <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'lower')}> - </CustomizedButton>
             <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'greater')}> + </CustomizedButton>
         </View>
-    </View>
+    </Card>
     <View>
         {/* <Text>LOG ROUNDS</Text> */}
     </View>
