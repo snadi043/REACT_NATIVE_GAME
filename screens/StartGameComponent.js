@@ -1,5 +1,6 @@
 import { View, StyleSheet, Alert } from "react-native";
 import {useEffect, useState} from 'react';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import Title from "../components/ui/Title";
 import GuessNumberOutput from "../components/game/GuessNumberOutput";
 import CustomizedButton from "../components/ui/CustomizedButton";
@@ -63,10 +64,14 @@ function StartGameComponent({userNumber, onGameOver}){
 
         {/* pre-configuring both the buttons to expect the 'direction' prop on them and execute as per the requirement using "this" and "bind" keywords. */}
             <View style={styles.buttonContainer}>
-                <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'lower')}> - </CustomizedButton>
+                <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'lower')}>
+                    <Ionicons name="remove" size='24' color="white"></Ionicons>
+                </CustomizedButton>
             </View>
             <View style={styles.buttonContainer}>
-                <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'greater')}> + </CustomizedButton>
+                <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'greater')}>
+                    <Ionicons name="add" size='24' color="white"></Ionicons> 
+                </CustomizedButton>
             </View>
         </View>
     </Card>
