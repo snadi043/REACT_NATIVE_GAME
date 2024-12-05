@@ -10,7 +10,7 @@ export default InstructionText;
 const styles = StyleSheet.create({
     labelText:{
         color: Colors.accent500,
-        fontSize: 24,
+        fontSize: 22,
         fontFamily: 'open-sans-regular',
     },
 })
