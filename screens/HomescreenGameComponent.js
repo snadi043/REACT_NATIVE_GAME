@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         textAlign: 'center',
         marginVertical: 8,
-        fontWeight: 'bold',
+        fontFamily: 'open-sans-bold',
+        // fontWeight: 'bold',
         fontSize: 28,
     },
     buttonsContainer:{

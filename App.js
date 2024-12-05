@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { StyleSheet, StatusBar, ImageBackground, SafeAreaView  } from "react-native";
+import { useFonts } from "expo-font";
+
+import { StyleSheet, StatusBar, ImageBackground, SafeAreaView , View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import HomescreenGameComponent from "./screens/HomescreenGameComponent";
 import StartGameComponent from "./screens/StartGameComponent";
@@ -9,6 +11,11 @@ import Colors from "./constants/colors";
 export default function App() {
   const [userChosenNumber, setUserChosenNumber] = useState();
   const [isGameOver, setIsGameOver] = useState(true);
+
+  useFonts({
+    'open-sans-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+  });
 
   function confirmNumberHandler(userEnteredNumber){
     setUserChosenNumber(userEnteredNumber);
@@ -30,6 +37,7 @@ export default function App() {
   }
 
   return (
+  
     <LinearGradient
       style={styles.rootContainer}
       colors={[Colors.primary500, Colors.accent500]}
@@ -53,6 +61,9 @@ export default function App() {
     {/* </ImageBackground> */}
 
     </LinearGradient>
+    
+    // </View>
+
   );
 }
 
