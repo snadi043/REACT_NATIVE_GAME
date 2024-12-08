@@ -11,6 +11,7 @@ import Colors from "./constants/colors";
 export default function App() {
   const [userChosenNumber, setUserChosenNumber] = useState();
   const [isGameOver, setIsGameOver] = useState(true);
+  const [roundsNumber, setRoundsNumber] = useState(0);
 
   useFonts({
     'open-sans-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -26,6 +27,11 @@ export default function App() {
     setIsGameOver(true);
   }
 
+  function startNewGameHandler(){
+    setUserChosenNumber(null);
+    setRoundsNumber(0);
+  }
+
   let screen =  (<HomescreenGameComponent onConfirmNumber={confirmNumberHandler}/> );
 
   if(userChosenNumber){
@@ -33,7 +39,7 @@ export default function App() {
   }
 
   if(userChosenNumber && isGameOver){
-    screen = <EndGameComponent/>
+    screen = <EndGameComponent userNumber={userChosenNumber} roundsNumber={roundsNumber} startNewGame={startNewGameHandler}/>
   }
 
   return (
