@@ -1,16 +1,12 @@
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 
-function CustomizedButton({children}){
-
-    function buttonPressHandler(){
-        console.log('pressed');
-    }
+function CustomizedButton({children, onCustomizedButtonPressProp}){
 
     return <View style={styles.buttonOuterContainer}>
             <Pressable 
                 style={({pressed}) => pressed ? [styles.pressed, styles.buttonInnerContainer] : styles.buttonInnerContainer} 
                 android_ripple={color="#640233"}
-                onPress={buttonPressHandler}>
+                onPress={onCustomizedButtonPressProp}>
                 <Text style={styles.buttonText}>{children}</Text>
             </Pressable>
         </View>
