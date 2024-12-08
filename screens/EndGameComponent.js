@@ -10,7 +10,7 @@ function EndGameComponent({userNumber, roundsNumber, startNewGame}){
         <Image style={styles.image} source={require('../assets/images/success.png')}/>
     </View>
         <Text style={styles.summaryText}>Your phone took <Text style={styles.enhanced}>{roundsNumber}</Text> rounds to identify the number <Text style={styles.enhanced}>{userNumber}</Text></Text>
-        <CustomizedButton>Start A New Game</CustomizedButton>
+        <CustomizedButton onCustomizedButtonPressProp={startNewGame}>Start A New Game</CustomizedButton>
     </View>
 }
 export default EndGameComponent;

@@ -12,5 +12,6 @@ const styles = StyleSheet.create({
         color: Colors.accent500,
         fontSize: 22,
         fontFamily: 'open-sans-regular',
+        textAlign: 'center'
     },
 })
