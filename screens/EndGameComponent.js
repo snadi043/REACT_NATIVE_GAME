@@ -3,13 +3,13 @@ import CustomizedButton from '../components/ui/CustomizedButton';
 import Title from '../components/ui/Title';
 import Colors from "../constants/colors";
 
-function EndGameComponent(){
+function EndGameComponent({userNumber, roundsNumber, startNewGame}){
     return <View style={styles.rootContainer}>
     <Title>Game Over!</Title>
     <View style={styles.imageContainer}> 
         <Image style={styles.image} source={require('../assets/images/success.png')}/>
     </View>
-        <Text style={styles.summaryText}>Your phone took <Text style={styles.enhanced}>X</Text> rounds to identify the number <Text style={styles.enhanced}>Y</Text></Text>
+        <Text style={styles.summaryText}>Your phone took <Text style={styles.enhanced}>{roundsNumber}</Text> rounds to identify the number <Text style={styles.enhanced}>{userNumber}</Text></Text>
         <CustomizedButton>Start A New Game</CustomizedButton>
     </View>
 }

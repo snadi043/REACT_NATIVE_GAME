@@ -39,6 +39,11 @@ function StartGameComponent({userNumber, onGameOver}){
         }
       }, [userNumber, currentGuess, onGameOver]);
 
+      useEffect(() => {
+        minBoundary = 1;
+        maxBoundary = 100;
+      }, []);
+
       function nextGuessNumberHandler(direction){
         if((direction == 'lower' && currentGuess < userNumber) || (direction == 'greater' && currentGuess > userNumber)){
             Alert.alert('Do not lie', 'Please select the proper direction of numbers to guess your expected number ', [{text: 'Sorry', style: 'cancel'}]);
