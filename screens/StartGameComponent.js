@@ -1,4 +1,4 @@
-import { View, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import {useEffect, useState} from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Title from "../components/ui/Title";
@@ -29,7 +29,8 @@ function StartGameComponent({userNumber, onGameOver}){
     // So. to avoid this issue we are manually making the values to 1 and 100. // 
 
     const userInitialGuessNumber = generateRandomBetween(1, 100, userNumber)
-      const [currentGuess, setCurrentGuess] = useState(userInitialGuessNumber);
+    const [currentGuess, setCurrentGuess] = useState(userInitialGuessNumber);
+    const [userRounds, setUserRounds] = useState([userInitialGuessNumber]);
 
       // Making the useEffect to run before the variables, min and max boundaries are set to avoid the errors.//
 
@@ -43,6 +44,7 @@ function StartGameComponent({userNumber, onGameOver}){
         minBoundary = 1;
         maxBoundary = 100;
       }, []);
+
 
       function nextGuessNumberHandler(direction){
         if((direction == 'lower' && currentGuess < userNumber) || (direction == 'greater' && currentGuess > userNumber)){
@@ -58,6 +60,7 @@ function StartGameComponent({userNumber, onGameOver}){
         }
         const newRndNumber = generateRandomBetween(minBoundary, maxBoundary, currentGuess);
         setCurrentGuess(newRndNumber);
+        setUserRounds(prevUserRounds => [ newRndNumber, ...prevUserRounds]);
       }
 
     return <View style={styles.startGameRoot}>
@@ -81,7 +84,7 @@ function StartGameComponent({userNumber, onGameOver}){
         </View>
     </Card>
     <View>
-        {/* <Text>LOG ROUNDS</Text> */}
+       {userRounds.map(guessRounds => <Text key={guessRounds}>{guessRounds}</Text>)}
     </View>
     </View>
     
