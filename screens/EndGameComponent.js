@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
 import CustomizedButton from '../components/ui/CustomizedButton';
 import Title from '../components/ui/Title';
 import Colors from "../constants/colors";
@@ -15,6 +15,8 @@ function EndGameComponent({userNumber, roundsNumber, startNewGame}){
 }
 export default EndGameComponent;
 
+const deviceWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
@@ -23,9 +25,9 @@ const styles = StyleSheet.create({
         padding: 36, 
     },
     imageContainer: {
-        height: 300,
-        width: 300,
-        borderRadius: 150,
+        height: deviceWidth < 380 ? 150 : 300,
+        width: deviceWidth < 380 ? 150: 300,
+        borderRadius: deviceWidth < 380 ? 75 : 150,
         borderWidth: 3,
         borderColor: Colors.primary700,
         overflow: 'hidden',
