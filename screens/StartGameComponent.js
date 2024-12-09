@@ -1,4 +1,4 @@
-import { View, StyleSheet, Alert, FlatList } from "react-native";
+import { View, StyleSheet, Alert, FlatList, useWindowDimensions } from "react-native";
 import {useEffect, useState} from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Title from "../components/ui/Title";
@@ -31,6 +31,7 @@ function StartGameComponent({userNumber, onGameOver}){
     const userInitialGuessNumber = generateRandomBetween(1, 100, userNumber)
     const [currentGuess, setCurrentGuess] = useState(userInitialGuessNumber);
     const [userRounds, setUserRounds] = useState([userInitialGuessNumber]);
+    const {height, width} = useWindowDimensions();
 
       // Making the useEffect to run before the variables, min and max boundaries are set to avoid the errors.//
 
@@ -65,26 +66,52 @@ function StartGameComponent({userNumber, onGameOver}){
 
       const userGuessRoundsLogLength = userRounds.length;
 
-    return <View style={styles.startGameRoot}>
-                <Title>Opponent's Guess</Title>
-                    <GuessNumberOutput>{currentGuess}</GuessNumberOutput>
-                        <Card>
-                            <InstructionText style={styles.instructionStyles}>Higher or Lower ?</InstructionText>
-                            <View style={styles.buttonsContainer}>
+      let content = (
+        <>
+            <GuessNumberOutput>{currentGuess}</GuessNumberOutput>
+                <Card>
+                    <InstructionText style={styles.instructionStyles}>Higher or Lower ?</InstructionText>
+                        <View style={styles.buttonsContainer}>
 
                             {/* pre-configuring both the buttons to expect the 'direction' prop on them and execute as per the requirement using "this" and "bind" keywords. */}
-                                <View style={styles.buttonContainer}>
-                                    <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'lower')}>
-                                        <Ionicons name="remove" size='24' color="white"></Ionicons>
-                                    </CustomizedButton>
-                                </View>
-                                <View style={styles.buttonContainer}>
-                                    <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'greater')}>
-                                        <Ionicons name="add" size='24' color="white"></Ionicons> 
-                                    </CustomizedButton>
-                                </View>
+                            <View style={styles.buttonContainer}>
+                                <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'lower')}>
+                                    <Ionicons name="remove" size='24' color="white"></Ionicons>
+                                </CustomizedButton>
                             </View>
-                        </Card>
+                            <View style={styles.buttonContainer}>
+                                <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'greater')}>
+                                    <Ionicons name="add" size='24' color="white"></Ionicons> 
+                                </CustomizedButton>
+                            </View>
+                        </View>
+                </Card>
+      </>
+      );
+
+      // considering the google pixel 3 emulator the if condition is written.
+
+      if(width > 500){
+        content = <>
+            <View style={styles.landscapeViewContainer}>
+                <View style={styles.buttonContainer}>
+                    <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'lower')}>
+                        <Ionicons name="remove" size='24' color="white"></Ionicons>
+                    </CustomizedButton>
+                </View>
+                <GuessNumberOutput>{currentGuess}</GuessNumberOutput>
+                <View style={styles.buttonContainer}>
+                    <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'greater')}>
+                        <Ionicons name="add" size='24' color="white"></Ionicons> 
+                    </CustomizedButton>
+                </View>
+            </View>
+        </>
+      }
+
+    return <View style={styles.startGameRoot}>
+                <Title>Opponent's Guess</Title>
+                {content}
                 <View style={styles.itemLogContainer}>
                     {/* {userRounds.map(guessRounds => <Text key={guessRounds}>{guessRounds}</Text>)} */}
                     <FlatList 
@@ -112,6 +139,10 @@ const styles = StyleSheet.create({
     },
    buttonContainer:{
         flex: 1,
+   },
+   landscapeViewContainer:{
+        flexDirection: 'row',
+        alignItems: 'center',
    },
    itemLogContainer:{
     flex: 1,
