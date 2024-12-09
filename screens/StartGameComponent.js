@@ -66,34 +66,35 @@ function StartGameComponent({userNumber, onGameOver}){
       const userGuessRoundsLogLength = userRounds.length;
 
     return <View style={styles.startGameRoot}>
-    <Title>Opponent's Guess</Title>
-       <GuessNumberOutput>{currentGuess}</GuessNumberOutput>
-    <Card>
-        <InstructionText style={styles.instructionStyles}>Higher or Lower ?</InstructionText>
-        <View style={styles.buttonsContainer}>
+                <Title>Opponent's Guess</Title>
+                    <GuessNumberOutput>{currentGuess}</GuessNumberOutput>
+                        <Card>
+                            <InstructionText style={styles.instructionStyles}>Higher or Lower ?</InstructionText>
+                            <View style={styles.buttonsContainer}>
 
-        {/* pre-configuring both the buttons to expect the 'direction' prop on them and execute as per the requirement using "this" and "bind" keywords. */}
-            <View style={styles.buttonContainer}>
-                <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'lower')}>
-                    <Ionicons name="remove" size='24' color="white"></Ionicons>
-                </CustomizedButton>
+                            {/* pre-configuring both the buttons to expect the 'direction' prop on them and execute as per the requirement using "this" and "bind" keywords. */}
+                                <View style={styles.buttonContainer}>
+                                    <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'lower')}>
+                                        <Ionicons name="remove" size='24' color="white"></Ionicons>
+                                    </CustomizedButton>
+                                </View>
+                                <View style={styles.buttonContainer}>
+                                    <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'greater')}>
+                                        <Ionicons name="add" size='24' color="white"></Ionicons> 
+                                    </CustomizedButton>
+                                </View>
+                            </View>
+                        </Card>
+                <View style={styles.itemLogContainer}>
+                    {/* {userRounds.map(guessRounds => <Text key={guessRounds}>{guessRounds}</Text>)} */}
+                    <FlatList 
+                        renderItem={(itemData) => <GuessLogList guess={itemData.item} roundNumber={userGuessRoundsLogLength - itemData.index}>{itemData.item}</GuessLogList>} 
+                        data={userRounds} 
+                        keyExtractor={(item) => item}
+                    >
+                    </FlatList>
+                </View>
             </View>
-            <View style={styles.buttonContainer}>
-                <CustomizedButton onCustomizedButtonPressProp={nextGuessNumberHandler.bind(this, 'greater')}>
-                    <Ionicons name="add" size='24' color="white"></Ionicons> 
-                </CustomizedButton>
-            </View>
-        </View>
-    </Card>
-    <View style={styles.itemLogContainer}>
-       {/* {userRounds.map(guessRounds => <Text key={guessRounds}>{guessRounds}</Text>)} */}
-       <FlatList 
-        renderItem={(itemData) => <GuessLogList guess={itemData.item} roundNumber={userGuessRoundsLogLength - itemData.index}>{itemData.item}</GuessLogList>} 
-        data={userRounds} 
-        keyExtractor={(item) => item}
-       ></FlatList>
-    </View>
-    </View>
     
 }
 export default StartGameComponent;

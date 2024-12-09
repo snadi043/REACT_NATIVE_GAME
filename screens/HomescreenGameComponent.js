@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextInput, View, StyleSheet, Alert, useWindowDimensions } from "react-native";
+import { TextInput, View, StyleSheet, Alert, KeyboardAvoidingView, ScrollView, useWindowDimensions } from "react-native";
 import CustomizedButton from "../components/ui/CustomizedButton";
 import Card from "../components/ui/Card";
 import Title from "../components/ui/Title";
@@ -37,35 +37,42 @@ function HomescreenGameComponent({onConfirmNumber}){
 
     // injecting more style properties to the existing styles on the view element to 
     // utilize the screen height values derived from useWindowDimensions hook.
-    
-    return <View style={[styles.titleContainer, {marginTop: deviceMarginTopDistance}]}>
-            <Title>Guess My Number</Title>
-                <Card>
-                    <InstructionText>Enter a Number</InstructionText>
-                    <TextInput 
-                    style={styles.textInput}
-                    maxLength={3} 
-                    cursorColor={Colors.primary700} 
-                    keyboardType="number-pad"
-                    multiline={false}
-                    onChangeText={textInputHandler}
-                    value={numberInput}
-                    />
-                    <View style={styles.buttonsContainer}>
-                        <View style={styles.buttonContainer}>
-                            <CustomizedButton onCustomizedButtonPressProp={numberResetHandler}>Reset</CustomizedButton>
-                        </View>
-                        <View style={styles.buttonContainer}>
-                            <CustomizedButton onCustomizedButtonPressProp={numberConfirmHandler}>Confirm</CustomizedButton>
-                        </View>
-                    </View>
-                </Card>
-            </View>
+
+    return <ScrollView style={styles.screen}>
+            <KeyboardAvoidingView style={styles.screen} behavior="position">
+                 <View style={[styles.titleContainer, {marginTop: deviceMarginTopDistance}]}>
+                    <Title>Guess My Number</Title>
+                        <Card>
+                            <InstructionText>Enter a Number</InstructionText>
+                                <TextInput 
+                                style={styles.textInput}
+                                maxLength={3} 
+                                cursorColor={Colors.primary700} 
+                                keyboardType="number-pad"
+                                multiline={false}
+                                onChangeText={textInputHandler}
+                                value={numberInput}
+                                />
+                            <View style={styles.buttonsContainer}>
+                                <View style={styles.buttonContainer}>
+                                    <CustomizedButton onCustomizedButtonPressProp={numberResetHandler}>Reset</CustomizedButton>
+                                </View>
+                                <View style={styles.buttonContainer}>
+                                    <CustomizedButton onCustomizedButtonPressProp={numberConfirmHandler}>Confirm</CustomizedButton>
+                                </View>
+                            </View>
+                        </Card>
+                </View>
+            </KeyboardAvoidingView>
+        </ScrollView>
 
 }
 export default HomescreenGameComponent;
 
 const styles = StyleSheet.create({
+    screen: {
+        flex: 1
+    },
     titleContainer:{
         color: 'white',
         // marginTop: 100,
