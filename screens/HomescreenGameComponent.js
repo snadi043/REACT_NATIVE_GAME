@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextInput, View, StyleSheet, Alert } from "react-native";
+import { TextInput, View, StyleSheet, Alert, useWindowDimensions } from "react-native";
 import CustomizedButton from "../components/ui/CustomizedButton";
 import Card from "../components/ui/Card";
 import Title from "../components/ui/Title";
@@ -8,6 +8,11 @@ import Colors from "../constants/colors";
 
 function HomescreenGameComponent({onConfirmNumber}){
     const [numberInput, setNumberInput] = useState('');
+
+    //using the useWindowDimensions hook to dynamically change the style properties  
+    //(eg: marginTop) depending upon the orientation of the mobile screens.
+
+    const {width, height} = useWindowDimensions();
 
     function textInputHandler(enteredText){
         setNumberInput(enteredText);
@@ -28,7 +33,12 @@ function HomescreenGameComponent({onConfirmNumber}){
         setNumberInput('');
     }
 
-    return <View style={styles.titleContainer}>
+    const deviceMarginTopDistance = height < 380 ? 30 : 100;
+
+    // injecting more style properties to the existing styles on the view element to 
+    // utilize the screen height values derived from useWindowDimensions hook.
+    
+    return <View style={[styles.titleContainer, {marginTop: deviceMarginTopDistance}]}>
             <Title>Guess My Number</Title>
                 <Card>
                     <InstructionText>Enter a Number</InstructionText>
@@ -58,7 +68,7 @@ export default HomescreenGameComponent;
 const styles = StyleSheet.create({
     titleContainer:{
         color: 'white',
-        marginTop: 100,
+        // marginTop: 100,
         flex: 1,
         alignItems: 'center',
     },
