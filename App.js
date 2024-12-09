@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useFonts } from "expo-font";
 
-import { StyleSheet, StatusBar, ImageBackground, SafeAreaView , View, Text } from "react-native";
+import { StyleSheet, StatusBar, ImageBackground, SafeAreaView} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import HomescreenGameComponent from "./screens/HomescreenGameComponent";
 import StartGameComponent from "./screens/StartGameComponent";
@@ -45,7 +45,8 @@ export default function App() {
   }
 
   return (
-  
+    <>
+    <StatusBar style="light"/>
     <LinearGradient
       style={styles.rootContainer}
       colors={[Colors.primary500, Colors.accent500]}
@@ -69,9 +70,8 @@ export default function App() {
     {/* </ImageBackground> */}
 
     </LinearGradient>
-    
+    </>
     // </View>
-
   );
 }
 
