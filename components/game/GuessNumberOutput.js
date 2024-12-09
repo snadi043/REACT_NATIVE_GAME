@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import Colors from '../../constants/colors';
 
 function GuessNumberOutput({children}){
@@ -9,19 +9,21 @@ function GuessNumberOutput({children}){
 
 export default GuessNumberOutput;
 
+const deviceWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
     numberContainer: {
         borderColor: Colors.accent500,
         borderWidth: 4,
-        padding: 24,
+        padding: deviceWidth < 380 ? 12 : 24,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 24,
+        margin: deviceWidth < 380 ? 12 : 24,
     },
     textContainer: {
         color: Colors.accent500,
-        fontSize: 36,
+        fontSize: deviceWidth < 380 ? 28 : 36,
         fontWeight: 'bold',
     }
 });
